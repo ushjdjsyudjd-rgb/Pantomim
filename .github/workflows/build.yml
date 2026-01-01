@@ -34,19 +34,15 @@ jobs:
       - name: Create Export Directory
         run: mkdir -p build/android
 
-      # این مرحله بسیار حیاتی است: ایمپورت کردن فونت و بقیه دارایی‌ها
-      - name: Import Assets
-        run: |
-          ./godot --headless --editor --quit --path .
-
       - name: Godot Android Export
         run: |
-          ./godot --headless --set-setting "export/android/android_sdk_path" "$ANDROID_SDK_ROOT"
-          ./godot --headless --set-setting "export/android/debug_keystore" "$GITHUB_WORKSPACE/debug.keystore"
-          ./godot --headless --export-debug "Android" build/android/game.apk
+          # اجرای مستقیم ایمپورت و خروجی در یک مرحله برای جلوگیری از هنگ کردن
+          ./godot --headless --path . --editor --quit || true
+          ./godot --headless --path . --export-debug "Android" build/android/game.apk --set-setting "export/android/android_sdk_path" "$ANDROID_SDK_ROOT" --set-setting "export/android/debug_keystore" "$GITHUB_WORKSPACE/debug.keystore"
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: Pantomime-Game-APK
           path: build/android/game.apk
+          if-no-files-found: error

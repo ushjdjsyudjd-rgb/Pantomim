@@ -1,31 +1,19 @@
 extends Node
 
+# دیتابیس کلمات
 var words = {
-    "عمومی": ["قوری", "هواپیما", "مسواک", "کفش"],
-    "سینما": ["جدایی نادر از سیمین", "اخراجی‌ها", "اینتراستلار"],
-    "ضرب‌المثل": ["آشپز که دوتا شد", "تخم‌مرغ دزد شتر دزد می‌شود"]
+    "آسان": ["خیار", "شانه", "مسواک", "فوتبال", "بستنی", "گربه", "تلفن"],
+    "متوسط": ["مترو", "همبرگر", "کوهنوردی", "تلسکوپ", "آسانسور", "رنگین کمان"],
+    "سخت": ["فرش فانتزی", "دیپلماسی", "نوستالژی", "پارادوکس", "اقتصاد مقاومتی"],
+    "ضرب‌المثل": ["کوه به کوه نمیرسه", "جوجه را آخر پاییز میشمارند", "آشپز که دوتا شد"]
 }
 
-var current_category = "عمومی"
-var time_left = 60
+var current_category = "آسان"
+var current_word = ""
 var score = 0
-
-signal time_updated(value)
-signal game_over
-
-func start_game(category):
-    current_category = category
-    time_left = 60
-    score = 0
-    $Timer.start()
-
-func _on_timer_timeout():
-    if time_left > 0:
-        time_left -= 1
-        emit_signal("time_updated", time_left)
-    else:
-        $Timer.stop()
-        emit_signal("game_over")
+var time_left = 60
 
 func get_random_word():
-    return words[current_category].pick_random()
+    var category_words = words[current_category]
+    current_word = category_words[randi() % category_words.size()]
+    return current_word

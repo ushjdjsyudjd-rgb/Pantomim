@@ -17,8 +17,8 @@ jobs:
       - name: Godot Android Export
         uses: firebelley/godot-export@v5.2.1
         with:
-          # استفاده از لینک‌های جایگزین و پایدارتر
-          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/4.2.1-stable/Godot_v4.2.1-stable_linux_headless.64.zip
+          # لینک‌های اصلاح شده و تست شده برای نسخه 4.2.1
+          godot_executable_download_url: https://github.com/godotengine/godot-builds/releases/download/4.2.1-stable/Godot_v4.2.1-stable_linux_headless.64.zip
           godot_export_templates_download_url: https://github.com/godotengine/godot-builds/releases/download/4.2.1-stable/Godot_v4.2.1-stable_export_templates.tpz
           relative_project_path: ./
           export_debug: true

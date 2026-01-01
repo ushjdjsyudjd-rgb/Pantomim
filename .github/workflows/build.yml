@@ -21,8 +21,11 @@ jobs:
           godot_export_templates_download_url: https://github.com/godotengine/godot-builds/releases/download/4.2.1-stable/Godot_v4.2.1-stable_export_templates.tpz
           relative_project_path: ./
           export_debug: true
-          # اضافه کردن این خط برای اطمینان از مسیر خروجی
-          relative_export_path: ./
+          # تایید مسیر خروجی
+          use_preset_export_path: true
+
+      - name: Check files for debugging
+        run: ls -R
 
       - name: Upload APK
         uses: actions/upload-artifact@v4

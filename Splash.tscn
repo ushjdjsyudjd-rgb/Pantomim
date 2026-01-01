@@ -1,5 +1,4 @@
 [gd_scene load_steps=3 format=3 uid="uid://c8x1y2z3w4v5"]
-
 [ext_resource type="Script" path="res://Splash.gd" id="1_script"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_neon"]
@@ -13,8 +12,6 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
-shadow_color = Color(1, 0, 1, 0.2)
-shadow_size = 10
 
 [node name="Splash" type="Control"]
 layout_mode = 3
@@ -41,13 +38,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -40.0
-offset_right = 100.0
-offset_bottom = 40.0
+offset_left = -200.0
+offset_top = -60.0
+offset_right = 200.0
+offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 72
 text = "پانتومیم"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -59,12 +56,12 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -200.0
-offset_top = -100.0
-offset_right = 200.0
-offset_bottom = -70.0
+offset_left = -300.0
+offset_top = -80.0
+offset_right = 300.0
+offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/fill = SubResource("StyleBoxFlat_neon")
-value = 50.0
+value = 0.0
 show_percentage = false

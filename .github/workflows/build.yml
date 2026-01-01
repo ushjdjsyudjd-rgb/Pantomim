@@ -17,6 +17,10 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
+      - name: Create Debug Keystore
+        run: |
+          keytool -genkey -v -keystore debug.keystore -alias androiddebugkey -storepass android -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
+
       - name: Download Godot
         run: |
           wget https://github.com/godotengine/godot-builds/releases/download/4.2.1-stable/Godot_v4.2.1-stable_linux.x86_64.zip
@@ -25,10 +29,9 @@ jobs:
           mkdir -p ~/.local/share/godot/export_templates/4.2.1.stable
           unzip Godot_v4.2.1-stable_export_templates.tpz
           mv templates/* ~/.local/share/godot/export_templates/4.2.1.stable/
-          rm Godot_v4.2.1-stable_export_templates.tpz templates -rf
 
       - name: Create Export Directory
-        run: mkdir -v -p build/android
+        run: mkdir -p build/android
 
       - name: Godot Android Export
         run: |

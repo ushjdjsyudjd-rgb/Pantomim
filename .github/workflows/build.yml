@@ -42,3 +42,4 @@ jobs:
         with:
           name: Pantomime-Game-APK
           path: build/android/game.apk
+          if-no-files-found: error

@@ -1,10 +1,15 @@
 config_version=5
+
 [application]
 config/name="Pantomime Pro"
 run/main_scene="res://Main.tscn"
+
 [autoload]
 GameManager="*res://GameManager.gd"
-[gui]
-theme/custom_font="res://assets/fonts/Vazir-Regular.ttf"
+
 [internationalization]
-rendering/text_driver="icu"
+locale/test="fa"
+
+[rendering]
+renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

@@ -1,18 +1,32 @@
 name: "Android Build"
 on: [push]
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Godot Export
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Godot Android Export
         uses: firebelley/godot-export@v5.2.1
         with:
+          # لینک‌های دانلود مستقیم موتور گودو
           godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.2.1/Godot_v4.2.1-stable_linux_headless.64.zip
           godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.2.1/Godot_v4.2.1-stable_export_templates.tpz
           relative_project_path: ./
-          export_preset_name: "Android"
-      - uses: actions/upload-artifact@v4
+          export_debug: true
+          # توجه: پارامتر export_preset_name حذف شد تا خطا برطرف شود. 
+          # این اکشن به طور خودکار اولین Preset موجود در فایل export_presets.cfg را شناسایی می‌کند.
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
         with:
-          name: Game-APK
+          name: Pantomime-Game-APK
           path: ./*.apk

@@ -5,10 +5,17 @@ extends Control
 @onready var color_rect = $CanvasLayer/Background
 
 func _ready():
-    # تنظیم فونت به صورت کدنویسی (اگر در ادیتور ست نکردید)
-    var f = load("res://assets/fonts/Vazir.ttf")
-    word_label.add_theme_font_override("font", f)
-    timer_label.add_theme_font_override("font", f)
+    # آدرس دقیق فایل فونت در مخزن شما
+    var my_font = load("res://assets/fonts/Vazir-Regular.ttf")
+    
+    # اعمال فونت به نمایشگر کلمه
+    if my_font:
+        word_label.add_theme_font_override("font", my_font)
+        timer_label.add_theme_font_override("font", my_font)
+        # تنظیم اندازه فونت برای خوانایی بهتر
+        word_label.add_theme_font_size_override("font_size", 72)
+    else:
+        print("خطا: فایل فونت پیدا نشد!")
     
     # شروع اولین کلمه
     show_new_word()

@@ -1,0 +1,18 @@
+config_version=5
+
+[application]
+config/name="Pantomime Pro"
+run/main_scene="res://Main.tscn"
+config/features=PackedStringArray("4.2", "Forward Plus")
+
+[display]
+window/size/viewport_width=720
+window/size/viewport_height=1280
+window/stretch/mode="canvas_items"
+window/handheld/orientation=1
+
+[gui]
+theme/custom_font="res://assets/fonts/Vazir.ttf"
+
+[internationalization]
+rendering/text_driver="icu"

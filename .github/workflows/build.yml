@@ -35,13 +35,12 @@ jobs:
         run: |
           mkdir -p build/android
           
-          # اصلاح فایل تنظیمات به صورت مستقیم برای تزریق مسیر Keystore
-          # این خط بسیار حیاتی است
+          # اصلاح فایل تنظیمات برای تزریق مسیر Keystore ساخته شده
           sed -i 's|keystore/debug=""|keystore/debug="'$GITHUB_WORKSPACE'/debug.keystore"|g' export_presets.cfg
           sed -i 's|keystore/debug_user=""|keystore/debug_user="androiddebugkey"|g' export_presets.cfg
           sed -i 's|keystore/debug_password=""|keystore/debug_password="android"|g' export_presets.cfg
 
-          # خروجی گرفتن
+          # خروجی گرفتن نهایی
           ./godot --headless --path . --export-debug "Android" build/android/game.apk --set-setting "export/android/android_sdk_path" "$ANDROID_SDK_ROOT"
 
       - name: Upload APK
@@ -49,4 +48,3 @@ jobs:
         with:
           name: Pantomime-Game-APK
           path: build/android/game.apk
-          if-no-files-found: error

@@ -33,6 +33,10 @@ jobs:
       - name: Create Export Directory
         run: mkdir -p build/android
 
+      - name: Import Assets (Fix Font Error)
+        run: |
+          ./Godot_v4.2.1-stable_linux.x86_64 --headless --editor --quit
+
       - name: Godot Android Export
         run: |
           ./Godot_v4.2.1-stable_linux.x86_64 --headless --export-debug "Android" build/android/game.apk

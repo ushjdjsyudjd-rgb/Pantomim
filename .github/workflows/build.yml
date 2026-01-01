@@ -23,26 +23,24 @@ jobs:
 
       - name: Download Godot & Templates
         run: |
-          # دانلود موتور گودو
           curl -L -o godot.zip https://github.com/godotengine/godot-builds/releases/download/4.2.1-stable/Godot_v4.2.1-stable_linux.x86_64.zip
           unzip godot.zip
           mv Godot_v4.2.1-stable_linux.x86_64 godot
-          
-          # دانلود و نصب تمپلیت‌ها در مسیر استاندارد لینوکس
           curl -L -o templates.tpz https://github.com/godotengine/godot-builds/releases/download/4.2.1-stable/Godot_v4.2.1-stable_export_templates.tpz
           mkdir -p ~/.local/share/godot/export_templates/4.2.1.stable
           unzip templates.tpz
           mv templates/* ~/.local/share/godot/export_templates/4.2.1.stable/
-          
-          # تمیزکاری
-          rm godot.zip templates.tpz
 
       - name: Create Export Directory
         run: mkdir -p build/android
 
+      # این مرحله بسیار حیاتی است: ایمپورت کردن فونت و بقیه دارایی‌ها
+      - name: Import Assets
+        run: |
+          ./godot --headless --editor --quit --path .
+
       - name: Godot Android Export
         run: |
-          # تنظیم مسیر SDK و Keystore و خروجی گرفتن نهایی
           ./godot --headless --set-setting "export/android/android_sdk_path" "$ANDROID_SDK_ROOT"
           ./godot --headless --set-setting "export/android/debug_keystore" "$GITHUB_WORKSPACE/debug.keystore"
           ./godot --headless --export-debug "Android" build/android/game.apk
